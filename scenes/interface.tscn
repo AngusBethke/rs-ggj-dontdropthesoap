@@ -1,0 +1,142 @@
+[gd_scene load_steps=3 format=3 uid="uid://sgx60diyop7k"]
+
+[ext_resource type="Texture2D" uid="uid://cqyb8tkyg6e6j" path="res://assets/ui/TextBar.png" id="1_4gsaf"]
+[ext_resource type="Texture2D" uid="uid://bym4xaopdn4tt" path="res://assets/ui/TextWindow.png" id="2_fimml"]
+
+[node name="InterfaceContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -570.0
+offset_bottom = 106.0
+grow_horizontal = 0
+texture = ExtResource("1_4gsaf")
+region_rect = Rect2(0, 0, 2048, 512)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="QuestLabel" type="Label" parent="QuestContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 23.0
+offset_top = -42.0
+offset_right = 148.0
+offset_bottom = 41.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Quest:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestDisplay" type="Label" parent="QuestContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -402.0
+offset_top = -41.0
+offset_right = -25.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Lorem Ipsum"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -562.0
+offset_top = -484.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ControlsExpanded" type="NinePatchRect" parent="ControlsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fimml")
+
+[node name="ControlsInformation" type="RichTextLabel" parent="ControlsContainer/ControlsExpanded"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = 32.0
+offset_right = -36.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[u][b]Movement:[/b][/u]
+Move Forward: 				|		<move_forward>
+Move Backward: 				|		<move_back>
+Move Left: 						|		<move_left>
+Move Right: 						|		<move_right>
+
+[u][b]Quests:[/b][/u]
+Next Quest:						|		<quest_next>
+Previous Quest:				|		<quest_previous>
+
+[u][b]Menu:[/b][/u]
+Show/Hide Controls		|		<menu_toggle_controls>
+Pause Menu						|		Esc
+"
+
+[node name="ControlsCollapsed" type="NinePatchRect" parent="ControlsContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = -80.0
+offset_right = -8.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_4gsaf")
+
+[node name="ControlsLabel" type="Label" parent="ControlsContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -429.0
+offset_top = -68.0
+offset_right = -28.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+text = "Controls (<menu_toggle_controls>)"
+horizontal_alignment = 2
+vertical_alignment = 1

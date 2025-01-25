@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://boniswuyeeavu"
+path="res://.godot/imported/StallDoor.obj-9571f692968d15407b90962deefaf942.mesh"
+
+[deps]
+
+files=["res://.godot/imported/StallDoor.obj-9571f692968d15407b90962deefaf942.mesh"]
+
+source_file="res://assets/stall/StallDoor.obj"
+dest_files=["res://.godot/imported/StallDoor.obj-9571f692968d15407b90962deefaf942.mesh", "res://.godot/imported/StallDoor.obj-9571f692968d15407b90962deefaf942.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
