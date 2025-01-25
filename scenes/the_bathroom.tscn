@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dt5wg78m6ivub"]
+[gd_scene load_steps=30 format=3 uid="uid://dt5wg78m6ivub"]
 
 [ext_resource type="PackedScene" uid="uid://bbecja4l3jqhc" path="res://scripts/player.tscn" id="1_iix47"]
 [ext_resource type="PackedScene" uid="uid://xn8i21mq80hj" path="res://scenes/pillar.tscn" id="1_immrw"]
@@ -20,7 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://dmrmv74ff3fff" path="res://scenes/bench.tscn" id="16_th1wk"]
 [ext_resource type="PackedScene" uid="uid://bv2ug0rv5sgij" path="res://scenes/bench_broken.tscn" id="17_c33yk"]
 [ext_resource type="PackedScene" uid="uid://3ak4ncjnbr7t" path="res://scenes/basin_grey.tscn" id="18_o58rl"]
-[ext_resource type="ArrayMesh" uid="uid://b03f1lh4pw4v" path="res://assets/stall/Stall.obj" id="21_fcmoy"]
+[ext_resource type="PackedScene" uid="uid://rqcfam8enh5d" path="res://scenes/stall.tscn" id="20_7o80l"]
+[ext_resource type="PackedScene" uid="uid://ckkqvchf2jn67" path="res://scenes/stall_door.tscn" id="21_ma2fb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4b4o2"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -246,10 +247,63 @@ transform = Transform3D(-0.747613, 0, -0.664135, 0, 1, 0, 0.664135, 0, -0.747613
 [node name="LaundryCart4" parent="Set Dressing" instance=ExtResource("4_3kifb")]
 transform = Transform3D(-0.747613, 0, -0.664135, 0, 1, 0, 0.664135, 0, -0.747613, 18.1723, 0, -84.0634)
 
+[node name="stall" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, -50)
+
+[node name="stall2" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, -35)
+
+[node name="stall3" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, -20)
+
+[node name="stall4" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, -5)
+
+[node name="stall5" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, 10)
+
+[node name="stall6" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, 25)
+
+[node name="stall7" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, 40)
+
+[node name="stall8" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, 55)
+
+[node name="stall9" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, 70)
+
+[node name="stall10" parent="Set Dressing" instance=ExtResource("20_7o80l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 85, -1, 85)
+
+[node name="stall_door" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, -44)
+
+[node name="stall_door2" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, -29)
+
+[node name="stall_door3" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, -14)
+
+[node name="stall_door4" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, 16)
+
+[node name="stall_door6" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, 31)
+
+[node name="stall_door7" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, 46)
+
+[node name="stall_door8" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, 61)
+
+[node name="stall_door9" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.161, 1.144, 76)
+
+[node name="stall_door5" parent="Set Dressing" instance=ExtResource("21_ma2fb")]
+transform = Transform3D(0.301555, -0.953449, 0, 0.953449, 0.301555, 0, 0, 0, 1, 58.4834, -0.201112, 1.96605)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_svwsb")
 autoplay = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 75.3171, 0, -70.2022)
-mesh = ExtResource("21_fcmoy")
