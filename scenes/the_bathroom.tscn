@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://dt5wg78m6ivub"]
+[gd_scene load_steps=42 format=3 uid="uid://dt5wg78m6ivub"]
 
 [ext_resource type="PackedScene" uid="uid://bbecja4l3jqhc" path="res://scripts/player.tscn" id="1_iix47"]
 [ext_resource type="PackedScene" uid="uid://xn8i21mq80hj" path="res://scenes/pillar.tscn" id="1_immrw"]
 [ext_resource type="Script" path="res://scenes/TheBathroom.cs" id="1_qrrkx"]
 [ext_resource type="PackedScene" uid="uid://sgx60diyop7k" path="res://scenes/interface.tscn" id="2_aohr1"]
 [ext_resource type="Material" uid="uid://3hl1p4pl82ts" path="res://materials/tiling.tres" id="2_ond6i"]
+[ext_resource type="PackedScene" uid="uid://c15ag26dkf2k5" path="res://scenes/pause_menu.tscn" id="3_tt5vi"]
 [ext_resource type="PackedScene" uid="uid://6ugh3uwdm3nv" path="res://scenes/laundry_cart.tscn" id="4_3kifb"]
 [ext_resource type="PackedScene" uid="uid://cl5fsdmw65qwa" path="res://scenes/wall.tscn" id="6_b8vbv"]
 [ext_resource type="Texture2D" uid="uid://boog5ejegwris" path="res://textures/concrete_rpt/concrete_rpt_basecolor.png" id="7_nx6g6"]
@@ -17,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cfwigusurufy5" path="res://scenes/basin.tscn" id="14_ghvpm"]
 [ext_resource type="AudioStream" uid="uid://cpd8fp0x7oiee" path="res://audio/ingame_loop.wav" id="14_svwsb"]
 [ext_resource type="PackedScene" uid="uid://2b3niadko7da" path="res://scenes/mirror.tscn" id="15_l51vc"]
+[ext_resource type="PackedScene" uid="uid://b12f8la6hdmin" path="res://scenes/clothes_pile.tscn" id="15_w6pqw"]
 [ext_resource type="PackedScene" uid="uid://dmrmv74ff3fff" path="res://scenes/bench.tscn" id="16_th1wk"]
 [ext_resource type="PackedScene" uid="uid://bv2ug0rv5sgij" path="res://scenes/bench_broken.tscn" id="17_c33yk"]
 [ext_resource type="PackedScene" uid="uid://3ak4ncjnbr7t" path="res://scenes/basin_grey.tscn" id="18_o58rl"]
@@ -24,6 +26,11 @@
 [ext_resource type="PackedScene" uid="uid://ckkqvchf2jn67" path="res://scenes/stall_door.tscn" id="21_ma2fb"]
 [ext_resource type="PackedScene" uid="uid://b71nklagrkv3i" path="res://scenes/toilet.tscn" id="22_wlw7o"]
 [ext_resource type="PackedScene" uid="uid://iwdc7wqqe36h" path="res://scenes/drain.tscn" id="23_03pxx"]
+[ext_resource type="PackedScene" uid="uid://dmcjil6scl5d2" path="res://scenes/towel.tscn" id="25_7vpa0"]
+[ext_resource type="PackedScene" uid="uid://d3w1u0ro2w52s" path="res://scenes/door.tscn" id="25_mh4cb"]
+[ext_resource type="PackedScene" uid="uid://cyf0a4icj3s1v" path="res://scenes/shower_head.tscn" id="27_c0iw5"]
+[ext_resource type="PackedScene" uid="uid://ok8lo45dkax7" path="res://scenes/pipe.tscn" id="28_16xmv"]
+[ext_resource type="Texture2D" uid="uid://s63bdeooxq0p" path="res://assets/decal/ExitTexture.png" id="30_76f8m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4b4o2"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -59,6 +66,13 @@ heightmap_texture = ExtResource("8_noj40")
 uv1_scale = Vector3(0.025, 0.025, 0.025)
 uv1_triplanar = true
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_8285c"]
+size = Vector2(6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nw8gi"]
+transparency = 1
+albedo_texture = ExtResource("30_76f8m")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_64hds"]
 
 [node name="L_TheBathroom" type="Node3D"]
@@ -67,6 +81,8 @@ script = ExtResource("1_qrrkx")
 [node name="Interface" parent="." instance=ExtResource("2_aohr1")]
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+
+[node name="pause_menu" parent="." instance=ExtResource("3_tt5vi")]
 
 [node name="Player" parent="." instance=ExtResource("1_iix47")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.93897, 0.297929, -0.350325)
@@ -172,6 +188,12 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46, 9,
 
 [node name="basin2" parent="Set Dressing" instance=ExtResource("14_ghvpm")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46, 9, -55)
+
+[node name="clothes_pile" parent="Set Dressing" instance=ExtResource("15_w6pqw")]
+transform = Transform3D(0.539638, 0, 0.841897, 0, 1, 0, -0.841897, 0, 0.539638, -80.2845, 0, -27.8027)
+
+[node name="clothes_pile2" parent="Set Dressing" instance=ExtResource("15_w6pqw")]
+transform = Transform3D(-0.798667, 0, 0.601773, 0, 1, 0, -0.601773, 0, -0.798667, 15.9069, 0, -16.2809)
 
 [node name="basin3" parent="Set Dressing" instance=ExtResource("14_ghvpm")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46, 9, -80)
@@ -338,6 +360,104 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 91, 0,
 [node name="drain" parent="Set Dressing" instance=ExtResource("23_03pxx")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -66.9555, 10.8335, -98.0626)
 
+[node name="door" parent="Set Dressing" instance=ExtResource("25_mh4cb")]
+transform = Transform3D(1.78873e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-08, -82, -1.865, -98.127)
+
+[node name="door2" parent="Set Dressing" instance=ExtResource("25_mh4cb")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 61.9444, -1.865, 97.9551)
+
+[node name="towel" parent="Set Dressing" instance=ExtResource("25_7vpa0")]
+transform = Transform3D(0.701084, 0, -0.713079, 0, 1, 0, 0.713079, 0, 0.701084, 66.0955, 0, -73.2735)
+
+[node name="towel2" parent="Set Dressing" instance=ExtResource("25_7vpa0")]
+transform = Transform3D(0.940318, 0, -0.340297, 0, 1, 0, 0.340297, 0, 0.940318, 18.249, 0, 21.0374)
+
+[node name="towel3" parent="Set Dressing" instance=ExtResource("25_7vpa0")]
+transform = Transform3D(-0.681539, 0, -0.731782, 0, 1, 0, 0.731782, 0, -0.681539, -28.5856, 0, -8.75196)
+
+[node name="towel4" parent="Set Dressing" instance=ExtResource("25_7vpa0")]
+transform = Transform3D(0.942583, 0, -0.333971, 0, 1, 0, 0.333971, 0, 0.942583, -28.5856, 0, 38.4034)
+
+[node name="towel5" parent="Set Dressing" instance=ExtResource("25_7vpa0")]
+transform = Transform3D(0.628601, 0, -0.777728, 0, 1, 0, 0.777728, 0, 0.628601, -81.0053, 0, 19.3128)
+
+[node name="shower_head" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -3.93869, 11.415, 48)
+
+[node name="shower_head2" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -3.939, 11.415, 19)
+
+[node name="shower_head3" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -3.939, 11.415, -19)
+
+[node name="shower_head4" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -3.939, 11.415, -48)
+
+[node name="shower_head5" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -96.0822, 11.415, 48)
+
+[node name="shower_head6" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -96.0825, 11.415, 19)
+
+[node name="shower_head7" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -96.0825, 11.415, -19)
+
+[node name="shower_head8" parent="Set Dressing" instance=ExtResource("27_c0iw5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -96.0825, 11.415, -48)
+
+[node name="pipe" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87688, 27.0009, -25.8485)
+
+[node name="pipe9" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 31.9235, -96.521)
+
+[node name="pipe10" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 36.8603, -96.521)
+
+[node name="pipe11" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 31.9235, 96.5474)
+
+[node name="pipe12" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 36.8603, 96.5474)
+
+[node name="pipe13" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 31.9235, -12.4412)
+
+[node name="pipe14" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 36.8603, -12.4412)
+
+[node name="pipe15" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 31.9235, -7.56717)
+
+[node name="pipe16" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.3879, 36.8603, -7.56717)
+
+[node name="pipe2" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87688, 41.7909, -25.8485)
+
+[node name="pipe5" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.485, 27.0009, -25.8485)
+
+[node name="pipe6" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.485, 41.7909, -25.8485)
+
+[node name="pipe7" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.154, 27.0009, -25.8485)
+
+[node name="pipe8" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.154, 41.7909, -25.8485)
+
+[node name="pipe3" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00105, 27.0009, -25.8485)
+
+[node name="pipe4" parent="Set Dressing" instance=ExtResource("28_16xmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00105, 41.7909, -25.8485)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Set Dressing"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -66.7181, 17.563, -97.9824)
+mesh = SubResource("PlaneMesh_8285c")
+surface_material_override/0 = SubResource("StandardMaterial3D_nw8gi")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_svwsb")
 autoplay = true
@@ -356,7 +476,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("BoxShape3D_64hds")
 
 [node name="Q1_Escape_Goto" type="Area3D" parent="QuestLogic"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.0018, 10.9314, -99.2717)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.0954, 11.4734, -99.463)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="QuestLogic/Q1_Escape_Goto"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

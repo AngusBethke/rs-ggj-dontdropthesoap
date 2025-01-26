@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbecja4l3jqhc"]
+[gd_scene load_steps=11 format=3 uid="uid://bbecja4l3jqhc"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_ql6bn"]
 [ext_resource type="ArrayMesh" uid="uid://bleo48ole5pw7" path="res://assets/soap/Soap.obj" id="2_45hta"]
 [ext_resource type="Texture2D" uid="uid://cv2n8bfingtfh" path="res://assets/soap/Soap_texture.jpeg" id="3_gml8o"]
 [ext_resource type="Material" uid="uid://mdw6p02u2emy" path="res://assets/bubble/bubble_particle.tres" id="4_xbe8m"]
+[ext_resource type="AudioStream" uid="uid://d1kfp6es303sx" path="res://audio/soap_slide_loop.wav" id="5_hl6mr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sl48u"]
 albedo_texture = ExtResource("3_gml8o")
@@ -66,3 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="VehicleAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_hl6mr")

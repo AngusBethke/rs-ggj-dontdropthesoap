@@ -18,6 +18,7 @@ public partial class TheBathroom : Node3D
     private bool BlockEnding = false;
     private RigidBody3D Player => GetNode<RigidBody3D>("Player");
     private Node3D QuestLogic => GetNode<Node3D>("QuestLogic");
+    private Control PauseMenu => GetNode<Control>("pause_menu");
     private List<NinePatchRect> ContainersMarkedForHiding = new();
     private bool EndScreenIsDisplayed = false;
     private bool IsEndGood = false;
@@ -46,7 +47,7 @@ public partial class TheBathroom : Node3D
             {
                 IsAcquired = true,
             },
-            new("q3_the_test", "The Test", "One of the prisoners is struggling to pass test, help him out!", 0.25,
+            /*new("q3_the_test", "The Test", "One of the prisoners is struggling to pass test, help him out!", 0.25,
                 new List<Objective>()
                 {
                     new("_1_goto", "Get a better sample from the toilet"),
@@ -54,7 +55,7 @@ public partial class TheBathroom : Node3D
                 })
             {
                 IsAcquired = false,
-            }
+            }*/
         };
 
         Level = new Level("The Prison Bathroom", "Soapy's in for a slippery surprise in the Prison bathrooms...", quests);
@@ -67,6 +68,7 @@ public partial class TheBathroom : Node3D
         HideQuestNotifiationContainer();
         DefaultQuestContainerVisibility();
         HandleQuestInformationDisplay();
+        PauseMenu.Visible = false;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,7 +78,6 @@ public partial class TheBathroom : Node3D
         {
             if (EndScreenButtonPressed())
             {
-                // TODO: Transition back to main menu
                 GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
             }
         }
@@ -86,6 +87,12 @@ public partial class TheBathroom : Node3D
             HandleUIMenu();
             HandleQuestLogic();
             HandleMarkedContainers();
+
+            if (Input.IsActionJustPressed(UIHelperConstants.EscapeMenuOpened))
+            {
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+                PauseMenu.Visible = true;
+            }
         }
     }
 
@@ -335,6 +342,7 @@ public partial class TheBathroom : Node3D
             UIHelperConstants.PlayerBack,
             UIHelperConstants.PlayerLeft,
             UIHelperConstants.PlayerRight,
+            UIHelperConstants.PlayerJump,
             UIHelperConstants.QuestNext,
             UIHelperConstants.QuestPrevious,
             UIHelperConstants.ToggleControls,

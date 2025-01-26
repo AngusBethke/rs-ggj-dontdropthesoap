@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dhgeet5q7xc1e"]
+
+[ext_resource type="Texture2D" uid="uid://xu45kuday4yp" path="res://textures/paint/paint_basecolor.png" id="1_dtse3"]
+[ext_resource type="Texture2D" uid="uid://b04kbl3tkkvua" path="res://textures/tiling/tiling_height.png" id="2_ef8gy"]
+[ext_resource type="Texture2D" uid="uid://8b660kcbup2e" path="res://textures/tiling/tiling_metallic.png" id="3_mh4cr"]
+[ext_resource type="Texture2D" uid="uid://de8bd1odbeu70" path="res://textures/tiling/tiling_normal.png" id="4_r1egt"]
+[ext_resource type="Texture2D" uid="uid://c475w276rra7" path="res://textures/tiling/tiling_roughness.png" id="5_8e0ee"]
+
+[resource]
+albedo_texture = ExtResource("1_dtse3")
+metallic = 1.0
+metallic_texture = ExtResource("3_mh4cr")
+roughness_texture = ExtResource("5_8e0ee")
+normal_enabled = true
+normal_texture = ExtResource("4_r1egt")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_ef8gy")
+uv1_scale = Vector3(0.04, 0.04, 0.04)
+uv1_triplanar = true

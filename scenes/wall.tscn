@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cl5fsdmw65qwa"]
 
-[ext_resource type="Material" uid="uid://3hl1p4pl82ts" path="res://materials/tiling.tres" id="1_3td2u"]
+[ext_resource type="Material" uid="uid://dhgeet5q7xc1e" path="res://materials/paint.tres" id="1_27oak"]
 [ext_resource type="Material" uid="uid://br7okug6x47q2" path="res://materials/concrete_gradient.tres" id="2_n7rhk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_but5t"]
@@ -17,7 +17,7 @@ size = Vector3(200, 25, 3.6)
 [node name="WallBase" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
 mesh = SubResource("BoxMesh_but5t")
-surface_material_override/0 = ExtResource("1_3td2u")
+surface_material_override/0 = ExtResource("1_27oak")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WallBase"]
 

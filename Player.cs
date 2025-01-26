@@ -14,6 +14,7 @@ public partial class Player : RigidBody3D
     protected CollisionShape3D Child_VehileCollision => GetNode<CollisionShape3D>("VehicleCollision");
     protected RayCast3D Child_RayCast => Child_VehileCollision.GetNode<RayCast3D>("RayCast3D");
     protected GpuParticles3D Child_Particles => Child_Vehicle.GetNode<GpuParticles3D>("VehicleParticles");
+    protected AudioStreamPlayer3D Child_Audio => GetNode<AudioStreamPlayer3D>("VehicleAudio");
 
 
     // Called when the node enters the scene tree for the first time.
@@ -26,11 +27,6 @@ public partial class Player : RigidBody3D
 	public override void _Process(double delta)
 	{
 		ManagePlayerMovement((float)delta);
-
-        if (Input.IsActionJustPressed(UIHelperConstants.EscapeMenuOpened))
-		{
-            Input.MouseMode = Input.MouseModeEnum.Visible;
-        }
 
         ManageCameraRotation();
     }
@@ -68,13 +64,19 @@ public partial class Player : RigidBody3D
 
         ApplyCentralForce(twistPivotInput.UniformMultiply(1200 * delta));
 
-        if (LinearVelocity.X > 0 || LinearVelocity.Y > 0 || LinearVelocity.Z > 0)
+        if (LinearVelocity.X != 0 || LinearVelocity.Y != 0 || LinearVelocity.Z != 0)
         {
             Child_Particles.Emitting = true;
+
+            if (!Child_Audio.Playing)
+                Child_Audio.Playing = true;
         }
         else
         {
             Child_Particles.Emitting = false;
+
+            if (Child_Audio.Playing)
+                Child_Audio.Playing = false;
         }
     }
 

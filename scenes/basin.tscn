@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfwigusurufy5"]
+[gd_scene load_steps=6 format=3 uid="uid://cfwigusurufy5"]
 
 [ext_resource type="ArrayMesh" uid="uid://cpek41iu4ie7s" path="res://assets/basin/Basin.obj" id="1_drldl"]
 [ext_resource type="Texture2D" uid="uid://qw0d8naqaf88" path="res://assets/basin/Basin_texture_white.jpeg" id="2_f6kuc"]
+[ext_resource type="AudioStream" uid="uid://ti6rn6m14jd6" path="res://audio/basin_dripping_loop.wav" id="3_ab77d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xvspo"]
 albedo_texture = ExtResource("2_f6kuc")
@@ -20,3 +21,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_xvspo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rh1pa")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00526, 4.85542, 0)
+stream = ExtResource("3_ab77d")
+autoplay = true
