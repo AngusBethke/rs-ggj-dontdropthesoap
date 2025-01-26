@@ -1,22 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbecja4l3jqhc"]
+[gd_scene load_steps=10 format=3 uid="uid://bbecja4l3jqhc"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_ql6bn"]
+[ext_resource type="ArrayMesh" uid="uid://bleo48ole5pw7" path="res://assets/soap/Soap.obj" id="2_45hta"]
+[ext_resource type="Texture2D" uid="uid://cv2n8bfingtfh" path="res://assets/soap/Soap_texture.jpeg" id="3_gml8o"]
+[ext_resource type="Material" uid="uid://mdw6p02u2emy" path="res://assets/bubble/bubble_particle.tres" id="4_xbe8m"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8dr5u"]
-size = Vector3(0.5, 0.25, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sl48u"]
+albedo_texture = ExtResource("3_gml8o")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ruoyu"]
-points = PackedVector3Array(-0.24253, -0.125, -0.478058, 0.242764, 0.125, 0.463119, 0.25, -0.12476, 0.477152, -0.24253, -0.125, 0.478058, 0.25, -0.12476, -0.477152, -0.234827, 0.125, -0.463119, 0.242764, 0.125, -0.463119, -0.234827, 0.125, 0.463119)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1jjb"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0.92549, 1, 1, 0.72549)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uyjyg"]
+angle_min = -85.4
+angle_max = 263.7
+gravity = Vector3(0, 5, 9)
+linear_accel_min = -18.56
+linear_accel_max = 38.79
+radial_accel_min = -17.45
+radial_accel_max = -17.45
+tangential_accel_min = 13.26
+tangential_accel_max = 13.26
+damping_min = 9.599
+damping_max = 9.599
+scale_min = 0.1
+scale_max = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_wcwnd"]
+material = ExtResource("4_xbe8m")
+radial_segments = 32
+rings = 16
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5xemu"]
+points = PackedVector3Array(-0.936959, -0.264383, -1.15505, 1.08454, 0.252765, 0.656124, 1.08625, 0.0444668, 0.657207, -1.01522, 0.487062, 1.37412, 0.491039, 0.487062, -1.69492, -0.431556, -0.325627, 1.56229, 0.750823, -0.3591, -1.23573, 0.602804, 0.543013, 1.70906, -0.896905, 0.357682, -1.37892, 0.828304, -0.322309, 1.34054, -0.484856, -0.326095, -1.55288, -0.792133, 0.598867, 0.983584, -0.766672, -0.358523, 1.14171, 0.982658, 0.305318, -1.169, 0.937652, 0.543013, 0.871703, 0.934933, -0.218097, -1.33237, -0.956081, -0.219059, 1.24146, 0.579108, -0.224702, -1.62722, -0.493388, 0.096581, 1.69872, 0.524559, -0.224185, 1.63643, 0.898762, 0.363769, 1.58242, -1.0712, 0.308871, 0.881212, -0.651649, -0.170814, -1.62546, 0.557419, -0.366798, 1.42056, -0.575154, -0.366828, -1.41052, 0.379274, 0.598867, 1.59753, 0.100421, 0.487062, -1.63898, -0.792133, 0.598867, 1.48565, -0.964446, 0.255618, -1.3473, -0.651043, 0.310341, -1.624, -0.80683, -0.222341, 1.52066, 0.926098, -0.267071, 1.22586)
 
 [node name="Player" type="RigidBody3D"]
 lock_rotation = true
 script = ExtResource("1_ql6bn")
 
 [node name="Vehicle" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_8dr5u")
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+mesh = ExtResource("2_45hta")
+surface_material_override/0 = SubResource("StandardMaterial3D_sl48u")
+surface_material_override/1 = SubResource("StandardMaterial3D_y1jjb")
+
+[node name="VehicleParticles" type="GPUParticles3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178092, -0.374815, 1.69622)
+process_material = SubResource("ParticleProcessMaterial_uyjyg")
+draw_pass_1 = SubResource("SphereMesh_wcwnd")
 
 [node name="VehicleCollision" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_ruoyu")
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5xemu")
+
+[node name="RayCast3D" type="RayCast3D" parent="VehicleCollision"]
+transform = Transform3D(3.84615, 0, 0, 0, 3.84615, 0, 0, 0, 3.84615, 0, 0, 0)
 
 [node name="TwistPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

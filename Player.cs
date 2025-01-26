@@ -12,6 +12,9 @@ public partial class Player : RigidBody3D
     protected Node3D Child_PitchPivot => Child_TwistPivot.GetNode<Node3D>("PitchPivot");
     protected MeshInstance3D Child_Vehicle => GetNode<MeshInstance3D>("Vehicle");
     protected CollisionShape3D Child_VehileCollision => GetNode<CollisionShape3D>("VehicleCollision");
+    protected RayCast3D Child_RayCast => Child_VehileCollision.GetNode<RayCast3D>("RayCast3D");
+    protected GpuParticles3D Child_Particles => Child_Vehicle.GetNode<GpuParticles3D>("VehicleParticles");
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -54,7 +57,25 @@ public partial class Player : RigidBody3D
         EnsurePlayerCannotExceedMapBounds();
 
         var twistPivotInput = Child_TwistPivot.Basis * input;
+
+        if (Input.IsActionJustPressed(UIHelperConstants.PlayerJump))
+        {
+            if (CanJump())
+            {
+                twistPivotInput.Y += 40;
+            }
+        }
+
         ApplyCentralForce(twistPivotInput.UniformMultiply(1200 * delta));
+
+        if (LinearVelocity.X > 0 || LinearVelocity.Y > 0 || LinearVelocity.Z > 0)
+        {
+            Child_Particles.Emitting = true;
+        }
+        else
+        {
+            Child_Particles.Emitting = false;
+        }
     }
 
     private void EnsurePlayerCannotExceedMapBounds()
@@ -88,5 +109,15 @@ public partial class Player : RigidBody3D
 
         _twistInput = 0;
         _pitchInput = 0;
+    }
+
+    private bool CanJump()
+    {
+        if (Child_RayCast.IsColliding())
+        {
+            return true;
+        }
+
+        return false;
     }
 }

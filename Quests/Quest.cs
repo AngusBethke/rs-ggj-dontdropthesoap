@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Godot;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DontDropTheSoap.Quests
@@ -21,6 +23,7 @@ namespace DontDropTheSoap.Quests
             Multiplier = multiplier;
             Objectives = objectives;
             SubQuest = subQuest;
+            IsCompletedCondition = () => HandleIsCompleted();
         }
 
         public string Id { get; set; }
@@ -29,9 +32,8 @@ namespace DontDropTheSoap.Quests
         public bool IsAcquired { get; set; }
         public List<Objective> Objectives { get; set; }
         public Quest SubQuest { get; set; }
-        public override bool IsCompleted => IsQuestCompleted();
 
-        public bool IsQuestCompleted()
+        public bool HandleIsCompleted()
         {
             var additionalMultiplier = Objectives.Where(x => x.IsCompleted).Select(x => x.Multiplier).Sum();
             var allObjectivesCompleted = Objectives.Where(x => !x.IsOptional).All(x => x.IsCompleted);
@@ -50,6 +52,38 @@ namespace DontDropTheSoap.Quests
             }
 
             return isCompleted;
+        }
+    }
+
+    public class GotoObjective: Objective
+    {
+        public GotoObjective(string id, string description, RigidBody3D player, Area3D area, double multiplier = 0, bool isOptional = false) : base(id, description, multiplier, isOptional)
+        {
+            Player = player;
+            Area = area;
+            IsCompletedCondition = () => HandleIsCompleted();
+        }
+
+        public RigidBody3D Player { get; set; }
+        public Area3D Area { get; set; }
+
+        public bool HandleIsCompleted()
+        {
+            var conditionMet = false;
+
+            if (Area != null && Area.Visible)
+            {
+                var entitiesInArea = Area.GetOverlappingBodies();
+                var playerInArea = entitiesInArea.Any(x => x == Player);
+
+                if (playerInArea)
+                {
+                    Area.Visible = false;
+                    conditionMet = true;
+                }
+            }
+
+            return conditionMet;
         }
     }
 
@@ -85,6 +119,7 @@ namespace DontDropTheSoap.Quests
         }
 
         public string Description { get; set; }
-        public virtual bool IsCompleted { get; set; }
+        public bool IsCompleted { get; set; }
+        public Func<bool> IsCompletedCondition { get; set; } = () => false;
     }
 }

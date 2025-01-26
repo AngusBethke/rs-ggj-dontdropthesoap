@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://mdw6p02u2emy"]
+
+[ext_resource type="Shader" path="res://assets/bubble/bubble.gdshader" id="1_3g6ur"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_21rfa"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wrghs"]
+noise = SubResource("FastNoiseLite_21rfa")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3g6ur")
+shader_parameter/smoothness = 0.1
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_wrghs")

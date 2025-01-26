@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d3it7orgj0ylf"
+path="res://.godot/imported/ToiletRoll.obj-a3c6689fe266bad104bb15ee12321fb0.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ToiletRoll.obj-a3c6689fe266bad104bb15ee12321fb0.mesh"]
+
+source_file="res://assets/toilet_roll/ToiletRoll.obj"
+dest_files=["res://.godot/imported/ToiletRoll.obj-a3c6689fe266bad104bb15ee12321fb0.mesh", "res://.godot/imported/ToiletRoll.obj-a3c6689fe266bad104bb15ee12321fb0.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

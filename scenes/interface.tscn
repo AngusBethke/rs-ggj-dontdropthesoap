@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://sgx60diyop7k"]
+[gd_scene load_steps=6 format=3 uid="uid://sgx60diyop7k"]
 
 [ext_resource type="Texture2D" uid="uid://cqyb8tkyg6e6j" path="res://assets/ui/TextBar.png" id="1_4gsaf"]
 [ext_resource type="Texture2D" uid="uid://bym4xaopdn4tt" path="res://assets/ui/TextWindow.png" id="2_fimml"]
+[ext_resource type="Texture2D" uid="uid://bh573pepnx2ev" path="res://assets/ui/GameOver_background.jpeg" id="3_51k6v"]
+[ext_resource type="Texture2D" uid="uid://dp2soj87m7fhk" path="res://assets/ui/Escaped_background.jpeg" id="3_h3nqa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6483q"]
+bg_color = Color(1, 1, 0.921569, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="InterfaceContainer" type="Control"]
 layout_mode = 3
@@ -31,11 +40,12 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 23.0
+offset_left = 13.0
 offset_top = -42.0
-offset_right = 148.0
+offset_right = 225.0
 offset_bottom = 41.0
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.227451)
 theme_override_font_sizes/font_size = 32
 text = "Quest:"
 horizontal_alignment = 1
@@ -48,14 +58,44 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -402.0
+offset_left = -385.0
 offset_top = -41.0
 offset_right = -25.0
 offset_bottom = 42.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.254902)
 theme_override_font_sizes/font_size = 32
 text = "Lorem Ipsum"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestNotificationContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -108.0
+offset_right = 460.0
+grow_vertical = 0
+texture = ExtResource("1_4gsaf")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="QuestNotificationLabel" type="Label" parent="QuestNotificationContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.366595, 0.366595, 0.366595, 0.254902)
+theme_override_font_sizes/font_size = 32
+text = "Quest Completed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -79,24 +119,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_fimml")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
 [node name="ControlsInformation" type="RichTextLabel" parent="ControlsContainer/ControlsExpanded"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 37.0
-offset_top = 32.0
+offset_left = 70.0
+offset_top = 42.0
 offset_right = -36.0
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2)
 bbcode_enabled = true
 text = "[u][b]Movement:[/b][/u]
 Move Forward: 				|		<move_forward>
 Move Backward: 				|		<move_back>
 Move Left: 						|		<move_left>
 Move Right: 						|		<move_right>
+Jump: 									|		<move_jump>
 
 [u][b]Quests:[/b][/u]
 Next Quest:						|		<quest_next>
@@ -104,8 +150,28 @@ Previous Quest:				|		<quest_previous>
 
 [u][b]Menu:[/b][/u]
 Show/Hide Controls		|		<menu_toggle_controls>
+Show/Hide Quests			|		<menu_toggle_quests>
 Pause Menu						|		Esc
 "
+
+[node name="ControlsLabelToggle" type="Label" parent="ControlsContainer/ControlsExpanded"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -468.0
+offset_top = -98.0
+offset_right = -53.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.227451)
+theme_override_font_sizes/font_size = 22
+text = "Controls (<menu_toggle_controls>)"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="ControlsCollapsed" type="NinePatchRect" parent="ControlsContainer"]
 visible = false
@@ -123,20 +189,206 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("1_4gsaf")
 
-[node name="ControlsLabel" type="Label" parent="ControlsContainer"]
+[node name="ControlsLabelToggle" type="Label" parent="ControlsContainer/ControlsCollapsed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.211765)
+theme_override_font_sizes/font_size = 22
+text = "Controls (<menu_toggle_controls>)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -106.0
+offset_right = 107.0
+offset_bottom = 103.0
+grow_horizontal = 2
+texture = ExtResource("1_4gsaf")
+
+[node name="TimerLabel" type="Label" parent="TimerContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.294118)
+theme_override_font_sizes/font_size = 32
+text = "5:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInformationGroup" type="NinePatchRect" parent="."]
+layout_mode = 1
+offset_right = 491.0
+offset_bottom = 408.0
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="QuestInformationContainer" type="NinePatchRect" parent="QuestInformationGroup"]
+layout_mode = 1
+offset_right = 491.0
+offset_bottom = 408.0
+texture = ExtResource("2_fimml")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="QuestList" type="RichTextLabel" parent="QuestInformationGroup/QuestInformationContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 45.0
+offset_right = -51.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.176471)
+bbcode_enabled = true
+text = "Lorem Ipsum
+Lorem Ipsum
+Lorem Ipsum"
+
+[node name="ObjectiveList" type="RichTextLabel" parent="QuestInformationGroup/QuestInformationContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 45.0
+offset_right = -51.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.215686)
+bbcode_enabled = true
+text = "Lorem Ipsum
+Lorem Ipsum
+Lorem Ipsum"
+
+[node name="QuestMenuToggle" type="Label" parent="QuestInformationGroup/QuestInformationContainer"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -429.0
-offset_top = -68.0
-offset_right = -28.0
-offset_bottom = -18.0
+offset_left = -329.0
+offset_top = -83.0
+offset_right = -49.0
+offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 22
-text = "Controls (<menu_toggle_controls>)"
-horizontal_alignment = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.117647)
+theme_override_font_sizes/font_size = 18
+text = "Quests (<menu_toggle_quests>)"
+
+[node name="QuestMenuTabCycle" type="Label" parent="QuestInformationGroup/QuestInformationContainer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = -86.0
+offset_right = 414.0
+offset_bottom = -54.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.160784)
+theme_override_font_sizes/font_size = 18
+text = "< <menu_tab_left> - <menu_tab_right> >"
 vertical_alignment = 1
+
+[node name="QuestInformationCollapsed" type="NinePatchRect" parent="QuestInformationGroup"]
+visible = false
+layout_mode = 1
+offset_right = 189.0
+offset_bottom = 77.0
+texture = ExtResource("1_4gsaf")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="QuestMenuToggle" type="Label" parent="QuestInformationGroup/QuestInformationCollapsed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.180392)
+theme_override_font_sizes/font_size = 18
+text = "Quests (<menu_toggle_quests>)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndScreenGood" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_h3nqa")
+
+[node name="Button" type="Button" parent="EndScreenGood"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 171.0
+offset_top = -272.0
+offset_right = 529.0
+offset_bottom = -202.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_6483q")
+toggle_mode = true
+text = "Continue"
+
+[node name="EndScreenBad" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_51k6v")
+
+[node name="Button" type="Button" parent="EndScreenBad"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = -404.0
+offset_right = 180.0
+offset_bottom = -334.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_6483q")
+toggle_mode = true
+text = "Continue"
